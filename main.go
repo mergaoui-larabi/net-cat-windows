@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"netcat/server"
+)
 
 func main() {
-	fmt.Println("howa")
+	server := server.NewServer(":8080")
+	go server.Display()
+	err := server.Start()
+	if err != nil {
+		fmt.Println("start fail to :", err)
+	}
 }
